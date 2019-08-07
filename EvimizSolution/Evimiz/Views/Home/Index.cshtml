@@ -1,0 +1,64 @@
+﻿@model List<Evimiz.Models.Entity.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-md-9 col-sm-12">
+            <h3>
+                Yeni Məhsullar
+            </h3>
+            <div class="row newItems items">
+                @{
+                    var list = Model.OrderBy(m => m.CreatedDate).Take(9).ToList();
+                }
+
+                @foreach (var item in list)
+                {
+                    <div class="col-md-6 col-lg-3 col-sm-6 col-xs-6 col-mob-12">
+                        <a href="@Url.Action("SinglePost","Home", routeValues: new { id = item.Id })">
+                            <div class="card" style="width: 18rem;">
+                                <img src="~/Areas/media/@item.PhotoPath1" alt="">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        @item.Name
+                                    </p>
+                                    <br />
+                                    @if (item.SaledPrice != null)
+                                    {
+                                        <div class="d-flex flex-row" style="text-align:center">
+                                            <p style="margin-right:5px;">
+                                                <s style="color:red">@item.Price &#8380;</s>
+                                            </p>
+                                            <p>@item.SaledPrice  &#8380;</p>
+                                        </div>
+                                    }
+                                    @if (item.SaledPrice == null)
+                                    {
+
+                                        <p>@item.Price &#8380;</p>
+                                    }
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+        <div class="right col-lg-2 col-md-3 col-sm-12">
+            <div class="banner">
+                <a href="">
+                    <img src="https://evimizstore.az/storage/2019-04-17/059fd76f15eff690e666ac1fa83f032e.png"
+                         class="img-responsive">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+@section style{
+    <link rel="stylesheet" href="~/Public/scss/home.css">
+}

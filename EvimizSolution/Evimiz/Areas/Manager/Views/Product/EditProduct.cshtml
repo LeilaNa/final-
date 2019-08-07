@@ -1,0 +1,372 @@
+﻿@model Evimiz.Models.Entity.Product
+
+@{
+    ViewBag.Title = "EditProduct";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm(Html.BeginForm(Html.BeginForm("EditProduct", "Product", FormMethod.Post, htmlAttributes: new { id = "create", Area = "Manager", enctype = "multipart/form-data" }))))
+{
+
+
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SubCategoryId, "SubCategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("SubCategoryId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SubCategoryId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ColorId, "ColorId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ColorId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ColorId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BrandId, "BrandId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("BrandId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Count, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Count, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SaledPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SaledPrice, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SaledPrice, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        1-ci şəkil
+        <label class="form-control image-container">
+            <input name="fileName" id="fileName"
+                   value="@(string.IsNullOrWhiteSpace(Model.PhotoPath1)?"":Href("~/Areas/media/"+Model.PhotoPath1))"
+                   type="hidden" />
+            <img src="@(string.IsNullOrWhiteSpace(Model.PhotoPath1)?"":Href("~/Areas/media/"+Model.PhotoPath1))" id="news-image" />
+            <i class="empty-icon"></i>
+            <a href="javascript:removePhoto()"><i class="clear-icon header-right-button"></i></a>
+            @Html.EditorFor(model => model.PhotoPath1,
+            new
+            {
+            htmlAttributes = new
+            {
+            @class = "form-control",
+            type = "file",
+            style = "display:none",
+            accept = "image/*",
+            onchange = "readURL1(this)",
+            id = "PhotoPath1",
+            name="PhotoPath1"
+            }
+            })
+        </label>
+        @Html.ValidationMessageFor(model => model.PhotoPath1, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        2-ci şəkil
+        <label class="form-control image-container">
+            <input name="fileName" id="fileName"
+                   value="@(string.IsNullOrWhiteSpace(Model.PhotoPath2)?"":Href("~/Areas/media/"+Model.PhotoPath2))"
+                   type="hidden" />
+            <img src="@(string.IsNullOrWhiteSpace(Model.PhotoPath2)?"":Href("~/Areas/media/"+Model.PhotoPath2))" id="news-image" />
+            <i class="empty-icon"></i>
+            <a href="javascript:removePhoto()"><i class="clear-icon header-right-button"></i></a>
+            @Html.EditorFor(model => model.PhotoPath2,
+        new
+        {
+            htmlAttributes = new
+            {
+                @class = "form-control",
+                type = "file",
+                style = "display:none",
+                accept = "image/*",
+                onchange = "readURL2(this)",
+                id = "PhotoPath2",
+                name = "PhotoPath2"
+            }
+        })
+        </label>
+        @Html.ValidationMessageFor(model => model.PhotoPath2, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        3-cü şəkil
+        <label class="form-control image-container">
+            <input name="fileName" id="fileName"
+                   value="@(string.IsNullOrWhiteSpace(Model.PhotoPath3)?"":Href("~/Areas/media/"+Model.PhotoPath3))"
+                   type="hidden" />
+            <img src="@(string.IsNullOrWhiteSpace(Model.PhotoPath3)?"":Href("~/Areas/media/"+Model.PhotoPath3))" id="news-image" />
+            <i class="empty-icon"></i>
+            <a href="javascript:removePhoto()"><i class="clear-icon header-right-button"></i></a>
+            @Html.EditorFor(model => model.PhotoPath3,
+        new
+        {
+            htmlAttributes = new
+            {
+                @class = "form-control",
+                type = "file",
+                style = "display:none",
+                accept = "image/*",
+                onchange = "readURL3(this)",
+                id = "PhotoPath3",
+                name = "PhotoPath3"
+            }
+        })
+        </label>
+        @Html.ValidationMessageFor(model => model.PhotoPath3, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        4-cü şəkil
+        <label class="form-control image-container">
+            <input name="fileName" id="fileName"
+                   value="@(string.IsNullOrWhiteSpace(Model.PhotoPath4)?"":Href("~/Areas/media/"+Model.PhotoPath4))"
+                   type="hidden" />
+            <img src="@(string.IsNullOrWhiteSpace(Model.PhotoPath4)?"":Href("~/Areas/media/"+Model.PhotoPath4))" id="news-image" />
+            <i class="empty-icon"></i>
+            <a href="javascript:removePhoto()"><i class="clear-icon header-right-button"></i></a>
+            @Html.EditorFor(model => model.PhotoPath4,
+        new
+        {
+            htmlAttributes = new
+            {
+                @class = "form-control",
+                type = "file",
+                style = "display:none",
+                accept = "image/*",
+                onchange = "readURL4(this)",
+                id = "PhotoPath4",
+                name = "PhotoPath4"
+            }
+        })
+        </label>
+        @Html.ValidationMessageFor(model => model.PhotoPath4, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        5-ci şəkil
+        <label class="form-control image-container">
+            <input name="fileName" id="fileName"
+                   value="@(string.IsNullOrWhiteSpace(Model.PhotoPath5)?"":Href("~/Areas/media/"+Model.PhotoPath5))"
+                   type="hidden" />
+            <img src="@(string.IsNullOrWhiteSpace(Model.PhotoPath5)?"":Href("~/Areas/media/"+Model.PhotoPath5))" id="news-image" />
+            <i class="empty-icon"></i>
+            <a href="javascript:removePhoto()"><i class="clear-icon header-right-button"></i></a>
+            @Html.EditorFor(model => model.PhotoPath5,
+        new
+        {
+            htmlAttributes = new
+            {
+                @class = "form-control",
+                type = "file",
+                style = "display:none",
+                accept = "image/*",
+                onchange = "readURL5(this)",
+                id = "PhotoPath5",
+                name = "PhotoPath5"
+            }
+        })
+        </label>
+        @Html.ValidationMessageFor(model => model.PhotoPath5, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Yadda saxla" class="btn btn-default" />
+        </div>
+    </div>
+    </div>
+    }
+
+    <div>
+        @Html.ActionLink("Bas sehifeye qayit", "Index")
+    </div>
+
+    @section script{
+        <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+        <script>
+            $(function () {
+                $('.validation-summary-errors').each(function () {
+                    $(this).addClass('alert');
+                    $(this).addClass('alert-danger');
+                });
+                $('form').each(function () {
+                    $(this).find('div.form-group').each(function () {
+                        if ($(this).find('span.field-validation-error').length > 0) {
+                            $(this).addClass('has-error');
+                            $(this).find('span.field-validation-error').
+                                removeClass('field-validation-error');
+                        }
+                    });
+                });
+            });
+
+            var readURL1 = function (input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#news-image1').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            var readURL2 = function (input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#news-image2').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            var readURL3 = function (input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#news-image3').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            var readURL4 = function (input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#news-image4').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            var readURL5 = function (input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#news-image5').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            var removePhoto = function () {
+                document.getElementById('fileName').value = '';
+                document.getElementById('PhotoPath1').value = '';
+                document.getElementById('news-image1').src = '';
+                document.getElementById('PhotoPath2').value = '';
+                document.getElementById('news-image2').src = '';
+                document.getElementById('PhotoPath3').value = '';
+                document.getElementById('news-image3').src = '';
+                document.getElementById('PhotoPath4').value = '';
+                document.getElementById('news-image4').src = '';
+                document.getElementById('PhotoPath5').value = '';
+                document.getElementById('news-image5').src = '';
+            }
+            CKEDITOR.replace('Description');
+        </script>
+    }
+
+
+    @section style{
+        <style>
+            #news-image1, #news-image2, #news-image3, #news-image4, #news-image5 {
+                min-width: 400px;
+                min-height: 300px;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            .image-container {
+                position: relative;
+                height: unset;
+                border-color: transparent;
+                width: 44%;
+                margin: 0 auto;
+            }
+
+            img[src=""] + i.empty-icon:after {
+                display: inline-block;
+                font-family: 'Font Awesome\ 5 Free';
+                font-size: inherit;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                position: absolute;
+                cursor: pointer;
+                content: "\f030";
+                font-size: 42pt;
+                top: 50%;
+                left: 50%;
+                font-weight: 900;
+                transform: translate(-50%,-50%);
+            }
+
+            img + i + a > i.clear-icon:after {
+                display: inline-block;
+                font-family: Font Awesome\ 5 Free;
+                font-size: inherit;
+                text-rendering: auto;
+                font-weight: 900;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                content: "\f00d";
+                font-size: 12pt;
+            }
+
+            i.header-right-button {
+                right: 24px;
+                top: 14px;
+                position: absolute;
+                cursor: pointer;
+            }
+
+            img[src=""] + i + a > i.clear-icon::after {
+                display: none;
+            }
+        </style>
+    }

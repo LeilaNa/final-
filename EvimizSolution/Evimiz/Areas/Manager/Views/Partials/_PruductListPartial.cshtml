@@ -1,0 +1,34 @@
+﻿@model List<Evimiz.Models.Entity.Product>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <img style="height:50px" src="~/Areas/media/@item.PhotoPath1" alt="Alternate Text" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaledPrice)
+        </td>
+        <td>
+            @Html.Raw(item.Description)
+        </td>
+        <td>
+            <a href="javascript:OnEdit(@item.Id)" class="btn btn-info" type="button" onclick="Sale(@item.Id)"> Endirim et</a>
+        </td>
+        <td>
+            <a href="@Url.Action("EditProduct", new { id = item.Id })" class="btn btn-success btn-sm"><i style="color:green;font-size:25px" class="fas fa-edit"></i></a>
+
+            <a href="@Url.Action("DeleteCategory","Items",new { id = item.Id })"> <i style="color:red;font-size:25px" class="fas fa-trash-alt"></i></a>
+
+        </td>
+    </tr>
+}

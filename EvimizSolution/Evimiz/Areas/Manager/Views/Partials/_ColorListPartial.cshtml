@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Evimiz.Models.Entity.Color>
+
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            <a href="javascript:OnEdit(@item.Id)" onclick="OnEdit(@item.Id)"> <i style="color:green" class="fas fa-edit"></i></a>
+
+            <a href="@Url.Action("DeleteColor","Filter",new { id = item.Id })"> <i style="color:red" class="fas fa-trash-alt"></i></a>
+
+          
+        </td>
+    </tr>
+}

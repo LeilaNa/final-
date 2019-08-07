@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Evimiz.Models.Entity.Category>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>@Html.DisplayFor(modelItem => item.SubCategories.Count)</td>
+        <td>
+            <a href="javascript:OnEditAB(@item.Id)" onclick="OnEditAB(@item.Id)"> <i style="color:green" class="fas fa-edit"></i></a>
+
+
+            @if (item.SubCategories.Where(s => s.DeletedDate == null).Count() == 0)
+            {
+                <button data-toggle="modal" data-target="#exampleModalInfo" type="button" style="background:none;border:none;">
+                    <i style="color:rgba(255,0,0,.5)" class="fas fa-trash-alt"></i>
+                </button>
+            }
+
+            @if (item.SubCategories.Where(s=>s.DeletedDate==null).Count()!=0)
+            {
+                <a href="@Url.Action("DeleteCategory","Items",new { id = item.Id })"> <i style="color:red" class="fas fa-trash-alt"></i></a>
+
+            }
+
+        </td>
+    </tr>
+    <div class="modal fade" id="exampleModalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xəbərdarlıq</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  Bu kateqoriyanı silmək üçün əvvəlcə bu kateqoriyanın bütün alt kateqoiyalarını silməlisiz 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,543 @@
+$yellow: #f6ce3b;
+$graytextcolor: #919ba3;
+$blacktextcolor: #333;
+$border: #eaedf3;
+$fontmain: 14px/17px FuturaNewBook, sans-serif;
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: $blacktextcolor;
+}
+
+a:hover {
+  text-decoration: none;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+section {
+  .breadcrumps {
+    background: #eef3fa;
+    padding: 30px 0px;
+    width: 100%;
+    h1 {
+      display: inline;
+      padding: 0px 5px;
+      border-left: 5px solid $yellow;
+      color: #333;
+    }
+    .breadcrumb {
+      background: transparent;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .breadcrumps {
+    padding: 0px !important;
+    h1 {
+      display: none !important;
+    }
+  }
+}
+// search input for mobile
+.searchmob {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  z-index: 9999;
+  background: #fff;
+  height: 80px;
+  padding-top: 20px;
+  overflow: hidden;
+  transition: 0.3s ease-in;
+  .input-group {
+    margin: 15px;
+    button {
+      border: 1px solid #aaa;
+      border-left: none;
+      border-radius: 3px;
+    }
+    button:focus {
+      outline: none !important;
+    }
+    input {
+      border-right: none;
+      border-radius: 3px;
+    }
+    input:focus {
+      outline: none !important;
+    }
+  }
+}
+
+// navbar for mobile
+.accordion .card-header::after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f078" !important;
+  float: right;
+  color: $yellow;
+  font-weight: 900;
+}
+.accordion .card-header.collapsed::after {
+  /* symbol for "collapsed" panels */
+  font-family: "Font Awesome 5 Free";
+  content: "\f077" !important;
+  color: $yellow;
+  font-weight: 900;
+}
+
+.accordion {
+  height: 0;
+  transition: 0.6s;
+  overflow: hidden;
+  .card-body {
+    padding: 0px;
+  }
+  .card-header {
+    padding: 5px 10px;
+    background: $blacktextcolor;
+    border: 1px solid white;
+    color: white;
+    text-transform: uppercase;
+  }
+  ul {
+    padding: 0px !important;
+    list-style: none;
+    margin: 0px !important;
+    li {
+      border-bottom: 1px solid white;
+      padding: 5px 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.4);
+    }
+  }
+}
+
+// header
+header {
+  .desktop {
+    display: block;
+    .top {
+      border-bottom: 1px solid #eaedf3;
+      .up {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px;
+        .left {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          a {
+            color: $graytextcolor;
+            font: 14px/17px FuturaNewBook, sans-serif;
+            padding-left: 10px;
+            transition: 0.3s;
+          }
+          a:hover {
+            color: black;
+            text-decoration: none;
+          }
+        }
+
+        .right {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          div {
+            span {
+              color: $graytextcolor;
+              font: 14px/17px FuturaNewBook, sans-serif;
+            }
+          }
+          button {
+            color: $graytextcolor;
+            background: none;
+            border: none;
+            font: 14px/17px FuturaNewBook, sans-serif;
+            padding: 0px 25px;
+            transition: 0.3s;
+            i {
+              color: $yellow;
+            }
+          }
+          button:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+
+    .middle {
+      padding: 25px;
+      img {
+        padding: 20px;
+      }
+      .center {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .search {
+          .input-group {
+            height: 50px;
+            button {
+              background: none;
+              border: 1px solid $border;
+              padding: 10px;
+            }
+            button:focus {
+              outline: none;
+            }
+
+            input {
+              height: 50px;
+              padding: 10px;
+              border: 1px solid $border;
+              border-right: none;
+            }
+            input:focus {
+              outline: none;
+            }
+            .searchIcon {
+              color: $graytextcolor;
+              border-left: none;
+            }
+
+            .dropdown-menu {
+              height: 500px;
+              overflow-y: scroll;
+            }
+          }
+        }
+
+        .shoppingChart {
+          padding: 20px;
+          a {
+            position: relative;
+            color: $blacktextcolor;
+            font: $fontmain;
+            i {
+              font-size: 30px;
+              color: $graytextcolor;
+            }
+            span {
+              height: 23px;
+              width: 23px;
+              border-radius: 100%;
+              background: $yellow;
+              color: $blacktextcolor;
+              position: absolute;
+              text-align: center;
+              padding: 5px;
+              margin: 15px;
+            }
+            p {
+              padding-left: 10px;
+              font: $fontmain;
+              color: $blacktextcolor;
+            }
+          }
+          a:hover {
+            text-decoration: none;
+          }
+        }
+
+        .tel {
+          padding: 20px;
+
+          i {
+            font-size: 40px;
+          }
+
+          div {
+            padding-left: 10px;
+            p {
+              color: $blacktextcolor;
+              font: 14px/1 FuturaNewBook, sans-serif;
+            }
+            span {
+              font-weight: bolder;
+              font: 18px/14px FuturaNewDemi, sans-serif;
+              white-space: nowrap;
+              color: $blacktextcolor;
+            }
+          }
+        }
+      }
+    }
+
+    .bottom {
+        transition: .5s;
+        width: 100%;
+      background: $yellow;
+      .navU {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        height: 60px;
+        margin-bottom: 0;
+        li:hover {
+          background: $blacktextcolor;
+          color: $yellow;
+        }
+        li:hover a {
+          color: $yellow;
+        }
+        > li {
+          display: flex;
+          flex-direction: column;
+          margin: 0px;
+          font-weight: 600;
+          padding: 20px 15px;
+          transition: 0.6s ease;
+          position: relative;
+          a {
+            color: $blacktextcolor;
+            text-transform: uppercase;
+            white-space: nowrap;
+            font-size: 14px;
+          }
+          a:hover {
+            text-decoration: none;
+          }
+          ul {
+            z-index: 999;
+            width: 260px;
+            display: none;
+            list-style: none;
+            background: $blacktextcolor;
+            padding: 0px;
+            position: absolute;
+            top: 62px;
+            left: 0px;
+            border-radius: 3px;
+            li {
+              padding: 5px 15px;
+              text-transform: uppercase;
+              color: white;
+              text-align: start;
+              a {
+                text-align: start;
+                color: white !important;
+                font-size: 12px;
+                transition: 0.3s;
+              }
+              a:hover {
+                color: $yellow !important;
+              }
+            }
+          }
+        }
+        li:hover ul {
+          display: block;
+        }
+      }
+    }
+
+    .fixed{
+        position: fixed;
+        top: 0;
+        z-index:79098;
+        height: 60px;;
+    }
+  }
+
+  .mobile {
+    position: relative;
+    display: none;
+    padding: 25px 10px;
+    .right {
+      div {
+        padding: 0px 5px;
+        button {
+          background: none;
+          border: none;
+          transition: 0.3s;
+        }
+        button:focus {
+          outline: none;
+        }
+      }
+    }
+    a {
+      transition: 0.5s;
+    }
+    form {
+      position: absolute;
+      transition: 0.5s;
+      input {
+        display: none;
+        width: 100%;
+        z-index: 9999;
+        padding: 10px;
+        border: 1px solid $blacktextcolor;
+        border-radius: 3px;
+      }
+    }
+
+    .shoppingChart {
+      a {
+        position: relative;
+
+        span {
+          height: 20px;
+          width: 20px;
+          border-radius: 100%;
+          background: $yellow;
+          color: $blacktextcolor;
+          position: absolute;
+          text-align: center;
+          font-size: 15px;
+          margin: -20px 11px;
+        }
+      }
+      a:hover {
+        text-decoration: none;
+      }
+    }
+    .closebar {
+      display: none;
+    }
+  }
+}
+
+// footer
+footer {
+  margin-top: 30px;
+  background: $blacktextcolor;
+  padding: 30px 0px;
+  * {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .copyright {
+    font-size: 14px;
+    padding: 10px 0px;
+    a {
+      text-decoration: rgba(255, 255, 255, 0.5) !important;
+      margin: 0px 5px;
+    }
+    a:hover {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .mail {
+    input {
+      background: $blacktextcolor;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 3px;
+      height: 40px;
+      padding: 10px;
+      color: rgba(255, 255, 255, 0.5);
+      width: 100%;
+    }
+    input:focus {
+      outline: none;
+    }
+  }
+
+  .right {
+    .info {
+      font-size: 14px;
+      padding: 10px 0px;
+      a {
+        padding: 0px 5px;
+      }
+      a:hover {
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: #f1f1f1;
+      }
+    }
+    .cards {
+      img {
+        height: 40px;
+        padding: 0px 5px;
+        filter: brightness(50%);
+        transition: 0.5s;
+      }
+      img:hover {
+        cursor: pointer;
+        filter: brightness(100%);
+      }
+    }
+  }
+}
+
+// login modal
+.modal {
+    input:focus {
+      outline: none !important;
+    }
+  
+    .modal-content {
+      padding: 15px;
+      width: 370px;
+    }
+    .actived {
+      border-bottom: 3px solid $yellow;
+    }
+    button {
+      background: none;
+      border: none;
+      padding: 5px 20px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: 0.5s;
+    }
+  
+    button:focus {
+      outline: none;
+    }
+  
+    #login,
+    #signin {
+      padding: 15px 25px;
+      color: #aaa;
+  
+      input {
+        border: 1px solid #aaa;
+      }
+  
+      button {
+        margin: 20px 0px !important;
+        background: $yellow;
+        color: black;
+        margin: 0 auto;
+        width: 100%;
+        border-radius: 3px;
+        height: 44px;
+      }
+    }
+  }
+  @media (max-width: 992px) {
+    .desktop {
+      display: none !important;
+    }
+    .mobile {
+      display: block !important;
+      img {
+        height: 35px;
+      }
+    }
+    .banner img {
+      width: 150px !important;
+    }
+  }

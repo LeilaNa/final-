@@ -1,0 +1,32 @@
+﻿@model Evimiz.ViewModel.NavBarViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="container">
+    <div id="accordion" class="accordion">
+        <div class="card mb-0">
+            @foreach (var item in Model.Category)
+            {
+                <div class="card-header collapsed" data-toggle="collapse" href="#@item.Name">
+                    <a class="card-title">
+                      @item.Name
+                    </a>
+                </div>
+                <div id="@item.Name" class="card-body collapse" data-parent="#accordion">
+                    <ul>
+                        @foreach (var sub in Model.SubCategory.Where(s=>s.CategoryId==item.Id))
+                        {
+                            <li><a href="">@sub.Name</a></li>
+                        }
+
+
+                    </ul>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,223 @@
+﻿@model Evimiz.Models.Entity.Product
+@{
+    ViewBag.Title = "SinglePost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="item  mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="app-figure" id="zoom-fig">
+                    <a id="Zoom-1" class="MagicZoom"
+                       title="Show your product in stunning detail with Magic Zoom Plus."
+                       href="https://evimizstore.az/storage/thumb/2019-07-04/171f3f85069c16f820ce775fc49293ac.png">
+                        <img src="~/Areas/media/@Model.PhotoPath1"
+                             alt="" />
+                    </a>
+                    @*<div class="selectors">
+                            <a data-zoom-id="Zoom-1"
+                               href="https://evimizstore.az/storage/2019-07-04/957744dae8a8189b83f9d413af302367.png"
+                               data-image="https://evimizstore.az/storage/2019-07-04/957744dae8a8189b83f9d413af302367.png">
+                                <img srcset="https://evimizstore.az/storage/2019-07-04/957744dae8a8189b83f9d413af302367.png"
+                                     src="https://evimizstore.az/storage/2019-07-04/957744dae8a8189b83f9d413af302367.png" />
+                            </a>
+                            <a data-zoom-id="Zoom-1"
+                               href="https://evimizstore.az/storage/thumb/2019-07-04/171f3f85069c16f820ce775fc49293ac.png"
+                               data-image="https://evimizstore.az/storage/thumb/2019-07-04/171f3f85069c16f820ce775fc49293ac.png?scale.height=400">
+                                <img srcset="https://evimizstore.az/storage/thumb/2019-07-04/171f3f85069c16f820ce775fc49293ac.png?scale.width=112 2x"
+                                     src="https://evimizstore.az/storage/thumb/2019-07-04/171f3f85069c16f820ce775fc49293ac.png?scale.width=56" />
+                            </a>
+
+                            <a data-zoom-id="Zoom-1"
+                               href="https://evimizstore.az/storage/thumb/2019-07-04/171f3f85069c16f820ce775fc49293ac.png"
+                               data-image="https://evimizstore.az/storage/thumb/2019-07-04/171f3f85069c16f820ce775fc49293ac.png?scale.height=400">
+                                <img srcset="https://evimizstore.az/storage/thumb/2019-07-04/171f3f85069c16f820ce775fc49293ac.png?scale.width=112 2x"
+                                     src="https://evimizstore.az/storage/thumb/2019-07-04/171f3f85069c16f820ce775fc49293ac.png?scale.width=56" />
+                            </a>
+
+                            <a data-zoom-id="Zoom-1"
+                               href="https://evimizstore.az/storage/thumb/2019-07-04/171f3f85069c16f820ce775fc49293ac.png"
+                               data-image="https://evimizstore.az/storage/thumb/2019-07-04/171f3f85069c16f820ce775fc49293ac.png?scale.height=400">
+                                <img srcset="https://evimizstore.az/storage/thumb/2019-07-04/171f3f85069c16f820ce775fc49293ac.png?scale.width=112 2x"
+                                     src="https://evimizstore.az/storage/thumb/2019-07-04/171f3f85069c16f820ce775fc49293ac.png?scale.width=56" />
+                            </a>
+                        </div>*@
+                </div>
+
+            </div>
+            <div class="productInfo col-lg-6 col-md-6 col-sm-12">
+
+                <h3 class="ProductName">
+                    @Model.Name
+                </h3> <br>
+                <small>Məhsul kodu: @Model.Id</small>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 d-flex flex-column ">
+                        <small class="bold">Məhsul qiyməti</small>
+                        <h3 class="price"> @Model.Price &#8380;</h3>
+                        <small class="bold">
+                            Məhsul sayı
+                        </small>
+                        <div class="input-group mb-3">
+                            <button class="plus">+</button>
+                            <input type="text" class="form-control numberof" aria-label="Default"
+                                   aria-describedby="inputGroup-sizing-default">
+                            <button class="minus">-</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 d-flex flex-column">
+                        <small class="bold">Bakı daxili pulsuz çatdırılma</small>
+                        <small style="color: #72c458;"><i class="fas fa-truck"></i> Bakı şəhəri üzrə</small>
+                        <button class="addBasket"><i class="fas fa-shopping-bag"></i> Səbətə əlavə et</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-sm-12 col-md-12">
+                <div class="container">
+                    @Html.Raw(Model.Description)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script{
+    <script type="text/javascript">
+        var mzOptions = {};
+        mzOptions = {
+            onZoomReady: function () {
+                console.log('onReady', arguments[0]);
+            },
+            onUpdate: function () {
+                console.log('onUpdated', arguments[0], arguments[1], arguments[2]);
+            },
+            onZoomIn: function () {
+                console.log('onZoomIn', arguments[0]);
+            },
+            onZoomOut: function () {
+                console.log('onZoomOut', arguments[0]);
+            },
+            onExpandOpen: function () {
+                console.log('onExpandOpen', arguments[0]);
+            },
+            onExpandClose: function () {
+                console.log('onExpandClosed', arguments[0]);
+            }
+        };
+        var mzMobileOptions = {};
+
+        function isDefaultOption(o) {
+            return magicJS.$A(magicJS.$(o).byTag('option')).filter(function (opt) {
+                return opt.selected && opt.defaultSelected;
+            }).length > 0;
+        }
+
+        function toOptionValue(v) {
+            if (/^(true|false)$/.test(v)) {
+                return 'true' === v;
+            }
+            if (/^[0-9]{1,}$/i.test(v)) {
+                return parseInt(v, 10);
+            }
+            return v;
+        }
+
+        function makeOptions(optType) {
+            var value = null, isDefault = true, newParams = Array(), newParamsS = '', options = {};
+            magicJS.$(magicJS.$A(magicJS.$(optType).getElementsByTagName("INPUT"))
+                .concat(magicJS.$A(magicJS.$(optType).getElementsByTagName('SELECT'))))
+                .forEach(function (param) {
+                    value = ('checkbox' == param.type) ? param.checked.toString() : param.value;
+
+                    isDefault = ('checkbox' == param.type) ? value == param.defaultChecked.toString() :
+                        ('SELECT' == param.tagName) ? isDefaultOption(param) : value == param.defaultValue;
+
+                    if (null !== value && !isDefault) {
+                        options[param.name] = toOptionValue(value);
+                    }
+                });
+            return options;
+        }
+
+        function updateScriptCode() {
+            var code = '&lt;script&gt;\nvar mzOptions = ';
+            code += JSON.stringify(mzOptions, null, 2).replace(/\"(\w+)\":/g, "$1:") + ';';
+            code += '\n&lt;/script&gt;';
+
+            magicJS.$('app-code-sample-script').changeContent(code);
+        }
+
+        function updateInlineCode() {
+            var code = '&lt;a class="MagicZoom" data-options="';
+            code += JSON.stringify(mzOptions).replace(/\"(\w+)\":(?:\"([^"]+)\"|([^,}]+))(,)?/g, "$1: $2$3; ").replace(/\{([^{}]*)\}/, "$1").replace(/\s*$/, '');
+            code += '"&gt;';
+
+            magicJS.$('app-code-sample-inline').changeContent(code);
+        }
+
+        function applySettings() {
+            MagicZoom.stop('Zoom-1');
+            mzOptions = makeOptions('params');
+            mzMobileOptions = makeOptions('mobile-params');
+            MagicZoom.start('Zoom-1');
+            updateScriptCode();
+            updateInlineCode();
+            try {
+                prettyPrint();
+            } catch (e) { }
+        }
+
+        function copyToClipboard(src) {
+            var
+                copyNode,
+                range, success;
+
+            if (!isCopySupported()) {
+                disableCopy();
+                return;
+            }
+            copyNode = document.getElementById('code-to-copy');
+            copyNode.innerHTML = document.getElementById(src).innerHTML;
+
+            range = document.createRange();
+            range.selectNode(copyNode);
+            window.getSelection().addRange(range);
+
+            try {
+                success = document.execCommand('copy');
+            } catch (err) {
+                success = false;
+            }
+            window.getSelection().removeAllRanges();
+            if (!success) {
+                disableCopy();
+            } else {
+                new magicJS.Message('Settings code copied to clipboard.', 3000,
+                    document.querySelector('.app-code-holder'), 'copy-msg');
+            }
+        }
+
+        function disableCopy() {
+            magicJS.$A(document.querySelectorAll('.cfg-btn-copy')).forEach(function (node) {
+                node.disabled = true;
+            });
+            new magicJS.Message('Sorry, cannot copy settings code to clipboard. Please select and copy code manually.', 3000,
+                document.querySelector('.app-code-holder'), 'copy-msg copy-msg-failed');
+        }
+
+        function isCopySupported() {
+            if (!window.getSelection || !document.createRange || !document.queryCommandSupported) { return false; }
+            return document.queryCommandSupported('copy');
+        }
+    </script>
+
+
+    <script src="~/Public/js/owl.carousel.js"></script>
+    <script src="~/Public/js/owl.carousel.min.js"></script>
+    <script src="~/Public/js/singleItem.js"></script>}
+
+@section style{
+    <link rel="stylesheet" href="~/Public/scss/singleItem.css">
+
+}

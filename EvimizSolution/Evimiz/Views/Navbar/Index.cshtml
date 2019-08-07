@@ -1,0 +1,63 @@
+﻿@model Evimiz.ViewModel.NavBarViewModel
+@{
+    Layout = null;
+}
+
+<div class="middle">
+    <div class="center container">
+        <div class="logo"> <img src="https://evimizstore.az/images/logo.png" alt="logo"></div>
+        <div class="search">
+            <div class="input-group mt-3 mb-3">
+                <div class="input-group-prepend">
+                    <button type="button" class=" dropdown-toggle" data-toggle="dropdown">
+                        Bütün çeşidlər
+                    </button>
+                    <div class="dropdown-menu">
+                        @foreach (var item in Model.SubCategory)
+                        {
+                            <a class="dropdown-item" href="#">@item.Name</a>
+                        }
+
+                    </div>
+                </div>
+                <input type="text" placeholder="Axtar">
+                <button class="searchIcon" type="button"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        <div class="shoppingChart ">
+            <a class="d-flex flex-row" href="">
+                <i class="fas fa-shopping-basket"></i>
+                <span class="w3-badge">3</span>
+                <p> Mənim <br> səbətim</p>
+            </a>
+        </div>
+        <div class="tel d-flex flex-row">
+            <i class="fas fa-phone"></i>
+            <div class="d-flex flex-column">
+                <p>Müştəri xidmətləri</p>
+                <span> (012) 490 22 25</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bottom">
+    <div class="container">
+        <ul class="navU">
+            @foreach (var cat in Model.Category)
+            {
+                <li>
+                    <a href="">@cat.Name</a>
+                    <ul class="unstyled-list">
+
+                        @foreach (var item in Model.SubCategory.Where(s=>s.CategoryId==cat.Id))
+                        {
+                            <li><a href="">@item.Name</a></li>
+                        }
+
+                    </ul>
+                </li>
+
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="~/Public/scss/common.css">
+    @RenderSection("style",false)
+</head>
+
+<body>
+    <!-- mobile search bar  -->
+    <form class="searchmob" action="">
+        <div class="input-group mb-3">
+            <input type="text" placeholder="Axtar" class="form-control" aria-label="Amount (to the nearest dollar)">
+            <button class="close">&times;</button>
+        </div>
+    </form>
+    <!-- mobile nav bar -->
+    <header>
+        <div class="desktop">
+            <div class="top">
+                <div class="up container">
+                    <div class="left">
+                        <div><a href="">Hədiyyə kartları</a></div>
+                        <div><a href="">Kampaniyalar</a></div>
+                        <div><a href="">Kampaniyalar</a></div>
+                    </div>
+                    <div class="right">
+                        <div><span>Fəzail Bayramov 28, Bakı Əyləncə Mərkəzinin yanı</span></div>
+                        <div>
+                            @if (Session[SessionKey.UserSession] == null)
+                            {
+                                <button data-toggle="modal" data-target="#exampleModal">
+                                    <i class="far fa-user"></i>
+                                    <span>Daxil ol</span>
+                                </button>
+                            }
+                            @if (Session[SessionKey.UserSession] != null)
+                            {
+                                <!-- Basic dropdown -->
+                                <button style="border:none;background:none" class="dropdown-toggle mr-4" type="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <i class="far fa-user"></i>   <span> @Session[SessionKey.UserSessionName]</span>
+                                </button>
+
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Profil məlumatları</a>
+                                    <a class="dropdown-item" href="@Url.Action("LogOut","Account")">Çıxış</a>                                  
+                                </div>
+                                <!-- Basic dropdown -->
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+           @Html.Action("Index", "Navbar")
+        </div>
+        <div class="mobile">
+            <div class="container head d-flex flex-row justify-content-between">
+                <a class="a" href=""><img src="https://evimizstore.az/images/logo.png" alt="logo"></a>
+                <div class="a d-flex flex-row right ">
+                    <div class="a searchbutton"><a href="#"><i class="fas fa-search"></i></a></div>
+                    <div class="a shoppingChart ">
+                        <a href="">
+                            <i class="fas fa-shopping-basket"></i>
+                            <span class="w3-badge">3</span>
+                        </a>
+                    </div>
+                    <div>
+                        @if (Session[SessionKey.UserSession] == null)
+                        {<button data-toggle="modal" data-target="#exampleModal"><i class="far fa-user"></i></button>
+
+                        }
+                        @if (Session[SessionKey.UserSession] != null)
+                        {
+                            <!-- Basic dropdown -->
+                            <button style="border:none;background:none" class="dropdown-toggle mr-4" type="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <i class="far fa-user"></i>  </button>
+
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Profil məlumatları</a>
+                                <a class="dropdown-item" href="@Url.Action("LogOut","Account")">Çıxış</a>
+                            </div>
+                            <!-- Basic dropdown -->
+                        }
+                    </div>
+                    <div class=" barsIcon"><a href="#"><i class="fas fa-bars"></i></a></div>
+                    <div class=" closebar"><a href="#"><i class="fas fa-times"></i></a></div>
+                </div>
+
+            </div>
+            <hr>
+        </div>
+        <div class="mobNavBar">
+           @Html.Action("Mobile","Navbar")
+
+        </div>
+    </header>
+    <!-- main content -->
+    <section>
+        @RenderBody();
+
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="copyright col-lg-3 col-md-12 col-sm-12">
+                    &copy; Bütün hüquqlar qorunur <a href="">Macram</a>
+                </div>
+                <div class=" mail col-lg-3 col-md-12 col-sm-12">
+                    <input type="text" placeholder="* E-poçt">
+                </div>
+                <div class="right col-lg-3 col-md-12 col-sm-12 d-flex flex-row flex-wrap justify-content-between">
+                    <div class="info d-flex flex-row">
+                        <a href="">Haqqımızda</a>
+                        <a href="">Xəbərlər</a>
+                        <a href="">Əlaqə</a>
+                    </div>
+                    <div class="cards d-flex flex-row ">
+                        <img src="https://cdn0.iconfinder.com/data/icons/flat-design-business-set-3/24/payment-method-visa-512.png"
+                             alt="">
+                        <img src="https://cdn0.iconfinder.com/data/icons/flat-design-business-set-3/24/payment-method-visa-512.png"
+                             alt="">
+                        <img src="https://cdn0.iconfinder.com/data/icons/flat-design-business-set-3/24/payment-method-visa-512.png"
+                             alt="">
+                        <img src="https://cdn0.iconfinder.com/data/icons/flat-design-business-set-3/24/payment-method-visa-512.png"
+                             alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="">
+
+                    <div class="d-flex flex-row justify-content-between">
+                        <button class="w3-bar-item w3-button tablink actived"
+                                onclick="openCity(event,'login')">
+                            Daxil ol
+                        </button>
+                        <button class="w3-bar-item w3-button tablink"
+                                onclick="openCity(event,'signin')">
+                            qeydiyyat
+                        </button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+
+                </div>
+                <div class="">
+                    <div id="login" class="w3-container w3-border log">
+                        <form method="post" action="@Url.Action("Login","Account")">
+
+                            <div class="form-group">
+                                <label for="mail"><small>E-poçt</small></label>
+                                <input name="Email" type="email" class="form-control" id="mail"
+                                       aria-describedby="emailHelp">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd"> <small>Şifrə</small></label>
+                                <input type="password" name="Password" class="form-control" id="pwd"
+                                       aria-describedby="emailHelp">
+
+                            </div>
+                            <small style="float: right"> <a href="">Şifrəni unutdun ?</a></small>
+                            @{ if (ViewBag.LoginError != null)
+                                {
+                                    <div class="alert alert-danger" role="alert">
+                                        @ViewBag.LoginError
+                                    </div>
+                                }
+                            }
+                            <div class="form-group">
+                                <button type="submit">Daxil ol</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="signin" class="w3-container w3-border log" style="display:none">
+                        <form action="@Url.Action("Register","Account")" method="post">
+                            <div class="form-group">
+                                <label for="name"><small>Ad,Soyad</small></label>
+                                <input name="FullName" type="text" class="form-control" id="username"
+                                       aria-describedby="emailHelp">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="mail"> <small>E-poçt</small></label>
+                                <input type="text" name="Email" class="form-control" id="mail"
+                                       aria-describedby="emailHelp">
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mail"> <small>Telefon</small></label>
+                                <input type="text" name="PhoneNumber" class="form-control" id="phone"
+                                       aria-describedby="emailHelp">
+
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" name="Gender" value="1"> Male
+                                <input type="radio" name="Gender" value="0"> Female
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mail"> <small>İstifadəçi şifrəsi</small></label>
+                                <input type="password" name="Password" class="form-control"  data-validation="strength" data-validation-strength="2" id="mail" placeholder="Şifrə"
+                                       aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="repeat" data-validation="confirmation" data-validation-confirm="Password" class="form-control" id="mail" placeholder="Şifrə təkrar"
+                                       aria-describedby="emailHelp">
+                            </div>
+                            @{ if (ViewBag.LoginError != null)
+                                {
+                                    <div class="alert alert-danger" role="alert">
+                                        @ViewBag.LoginError
+                                    </div>
+                                }
+                            }
+                            <div class="form-group">
+                                <button type="submit">Qeydiyyatdan keç!</button>
+
+                            </div>
+
+
+                        </form>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function openCity(evt, cityName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("log");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" actived", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " actived";
+        }
+    </script>
+    <!-- jquey -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="~/Public/js/common.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+    <script>
+        $.validate({
+            modules: 'security'
+        });
+    </script>
+    <script>
+        $.validate({
+            modules: 'security',
+            onModulesLoaded: function () {
+                var optionalConfig = {
+                    fontSize: '12pt',
+                    padding: '4px',
+                    bad: 'Çox zəif',
+                    weak: 'Zəif',
+                    good: 'Normal',
+                    strong: 'Güclü'
+                };
+
+                $('input[name="Pass"]').displayPasswordStrength(optionalConfig);
+            }
+        });
+    </script>
+    @RenderSection("script", false)
+
+</body>
+</html>
